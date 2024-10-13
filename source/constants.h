@@ -1,0 +1,22 @@
+#define KATHO_SPRITE_ID 1
+#define KATHO_BASE_TILE_IDX 1
+#define KATHO_HEIGHT 30
+
+#define ZAC_SPRITE_ID 2
+#define ZAC_BASE_TILE_IDX 9
+#define ZAC_HEIGHT 31
+
+#define BQ_SPRITE_ID 3
+#define BQ_BASE_TILE_IDX 17
+#define BQ_HEIGHT 16
+
+#define BOTTLE_BASE_TILE_IDX 25
+
+#define PLAYER_SPEED 5
+#define PLAYER_JUMP_SPEED 10
+
+#define FRAME_WIDTH 240
+#define FRAME_HEIGHT 160
+
+#define GRAVITY 1
+#define MAX_PHYSICS_OBJS 50

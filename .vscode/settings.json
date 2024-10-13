@@ -1,0 +1,15 @@
+{
+  "C_Cpp.default.compilerPath": "",
+  "files.associations": {
+    "*.ejs": "html",
+    "gba_base.h": "c",
+    "gba_types.h": "c",
+    "gba_sprites.h": "c",
+    "gba_systemcalls.h": "c",
+    "gba_video.h": "c",
+    "gba_interrupt.h": "c",
+    "gba_input.h": "c",
+    "obj_utils.h": "c",
+    "spritesheet.h": "c"
+  }
+}
