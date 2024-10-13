@@ -1,6 +1,6 @@
-# Wedding Game (Gameboy Advance)
+# Catch a Bouquet! (Gameboy Advance)
 
-This is a game I made for my wedding. It's a simple gameboy advance game where you play as me and have to collect all the bouquets to win the game. The game is written in C and compiled with devkitPro.
+This is a game I made for my wedding. It's a simple Gameboy Advance game where you play as me and have to collect all the bouquets to win the game. The game is written in C and compiled with devkitPro.
 
 ![Wedding Game](.github/screenshot.png)
 
