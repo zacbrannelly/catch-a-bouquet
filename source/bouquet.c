@@ -25,7 +25,17 @@ void init_bq_pool(GameState* game_state) {
   bq_buffer.attr2 = BQ_BASE_TILE_IDX * 2;
 
   // Initialize a pool of 40 bouquet sprites
-  init_physics_object_pool(game_state, &bq_buffer, BOUQUET, BQ_SPRITE_POOL_SIZE);
+  Collider bq_collider;
+  bq_collider.circle.center_x = 16;
+  bq_collider.circle.center_y = 16;
+  init_physics_object_pool(
+    game_state,
+    &bq_buffer,
+    BOUQUET,
+    &bq_collider,
+    CIRCLE,
+    BQ_SPRITE_POOL_SIZE
+  );
 
   // Initialize random number generator
   xorshift_init(&bq_random_state, 0x12345678);

@@ -25,7 +25,17 @@ void init_bottle_pool(GameState* game_state) {
   bottle_buffer.attr2 = BOTTLE_BASE_TILE_IDX * 2;
 
   // Initialize a pool of bottle sprites
-  init_physics_object_pool(game_state, &bottle_buffer, BOTTLE, BOTTLE_SPRITE_POOL_SIZE);
+  Collider bottle_collider;
+  bottle_collider.circle.center_x = 16;
+  bottle_collider.circle.center_y = 32;
+  init_physics_object_pool(
+    game_state,
+    &bottle_buffer,
+    BOTTLE,
+    &bottle_collider,
+    CIRCLE,
+    BOTTLE_SPRITE_POOL_SIZE
+  );
 
   // Initialize random number generator
   xorshift_init(&bottle_random_state, 0x12345678);

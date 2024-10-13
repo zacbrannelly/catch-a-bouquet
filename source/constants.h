@@ -4,6 +4,7 @@
 
 #define ZAC_SPRITE_ID 2
 #define ZAC_BASE_TILE_IDX 9
+#define ZAC_WIDTH 16
 #define ZAC_HEIGHT 31
 
 #define BQ_SPRITE_ID 3

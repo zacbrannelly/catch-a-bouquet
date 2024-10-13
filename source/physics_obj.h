@@ -8,20 +8,19 @@
 typedef struct GameState GameState;
 
 typedef enum ColliderType {
-  CIRCLE = 0,
-  RECTANGLE = 1
+  NONE = 0,
+  CIRCLE = 1,
+  BOX = 2
 } ColliderType;
 
 typedef struct BoxCollider {
-  int x;
-  int y;
-  int width;
-  int height;
+  int min_x, max_x;
+  int min_y, max_y;
 } ALIGN(4) BoxCollider;
 
 typedef struct CircleCollider {
-  int x;
-  int y;
+  int center_x;
+  int center_y;
   int radius;
 } ALIGN(4) CircleCollider;
 
@@ -68,6 +67,8 @@ void init_physics_object_pool(
   GameState* game_state,
   OBJATTR* obj_buffer,
   PhysicsObjType type,
+  Collider* collider,
+  ColliderType collider_type,
   int num_objs
 );
 
@@ -84,8 +85,15 @@ PhysicsObj* spawn_physics_object(
 );
 
 /**
+ * Kills a physics object.
+ */
+void kill_physics_object(GameState* game_state, PhysicsObj* obj);
+
+/**
  * Updates the physics world.
  */
 void update_physics_world(GameState* game_state);
+
+PhysicsObj* get_colliding_obj_with_box(GameState* game_state, BoxCollider* collider);
 
 #endif // PHYSICS_OBJ_H_

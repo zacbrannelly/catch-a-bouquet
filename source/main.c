@@ -107,6 +107,13 @@ int main() {
     // Physics world
     update_physics_world(&game_state);
 
+    // Collision detection
+    PhysicsObj* colliding_obj = get_colliding_obj_with_box(&game_state, &game_state.player_collider);
+    if (colliding_obj != NULL) {
+      // Kill the colliding object
+      kill_physics_object(&game_state, colliding_obj);
+    }
+
     // Apply rotation to the first affine matrix
     // This can be used to rotate any sprite constantly.
     if (game_state.frame_count % 3 == 0) {

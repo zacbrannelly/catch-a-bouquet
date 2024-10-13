@@ -14,6 +14,7 @@ typedef struct GameState {
   OBJATTR zac_buffer;
   OBJATTR katho_buffer;
   Sprite* player;
+  BoxCollider player_collider;
   PhysicsWorld physics_world;
 } ALIGN(4) GameState;
 
