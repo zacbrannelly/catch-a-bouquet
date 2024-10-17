@@ -13,8 +13,7 @@ inline void obj_affine_identity(OBJAFFINE* obj_affine) {
   obj_affine->pd = 1 << 8;
 }
 
-inline void obj_affine_rotate(OBJAFFINE *oaff, int sx, int sy, u32 alpha)
-{
+inline void obj_affine_rotate(OBJAFFINE *oaff, int sx, int sy, u32 alpha) {
   int ss = lu_sin(alpha);
   int cc = lu_cos(alpha);
 
@@ -22,6 +21,11 @@ inline void obj_affine_rotate(OBJAFFINE *oaff, int sx, int sy, u32 alpha)
   oaff->pb = (-ss * sx) >> 12;
   oaff->pc = (ss * sy)  >> 12;
   oaff->pd = (cc * sy)  >> 12;
+}
+
+inline void obj_affine_scale(OBJAFFINE *oaff, int sx, int sy) {
+  oaff->pa = sx;
+  oaff->pd = sy;
 }
 
 inline void obj_set_pos_x(OBJATTR* obj, u16 x) {

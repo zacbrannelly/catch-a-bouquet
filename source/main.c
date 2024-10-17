@@ -8,7 +8,8 @@
 #include <fade.h>
 
 #include "menu.h"
-#include "spritesheet.h"
+#include "gfx.h"
+#include "gfx_palette.h"
 
 #include "constants.h"
 #include "obj_utils.h"
@@ -27,6 +28,9 @@ int const SCALE_Y = 256;
 
 int const BOTTLE_SCALE_X = 384;
 int const BOTTLE_SCALE_Y = 384;
+
+int const PUPPY_SCALE_X = 384;
+int const PUPPY_SCALE_Y = 384;
 
 int main() {
   // Set up the interrupt handlers
@@ -50,8 +54,9 @@ int main() {
   FadeToPalette(menuPal, 60);
 
   // Copy spritesheet to memory (tiles, palette)
-  CpuSet(spritesheetTiles, OBJ_BASE_ADR + 64, spritesheetTilesLen / 2);
-  CpuSet(spritesheetPal, OBJ_COLORS, spritesheetPalLen / 2);
+  CpuSet(gfx_spritesheet_tiles, OBJ_BASE_ADR, gfx_spritesheet_tiles_len / 2);
+  CpuSet(gfx_puppy_tiles, OBJ_BASE_ADR + gfx_spritesheet_tiles_len, gfx_puppy_tiles_len / 2);
+  CpuSet(gfx_palette, OBJ_COLORS, gfx_palette_len / 2);
 
   // Disable all OBJs
   obj_disable_all();
@@ -66,8 +71,17 @@ int main() {
   game_state.jump_velocity = 0;
   game_state.is_jumping = false;
 
+  // Olive NPC sprite (32x32@8bpp)
+  OBJATTR olive_buffer;
+  olive_buffer.attr0 = OBJ_256_COLOR | OBJ_SHAPE(0) | ATTR0_ROTSCALE_DOUBLE;
+  olive_buffer.attr1 = OBJ_SIZE(2) | OBJ_ROT_SCALE(2);
+  olive_buffer.attr2 = 32 * 2;
+
+  obj_set_pos(&olive_buffer, 120, FRAME_HEIGHT - 40);
+  obj_update(&olive_buffer, 4);
+
   // Initialize the physics world
-  init_physics_world(&game_state, BQ_SPRITE_ID);
+  init_physics_world(&game_state, 5);
 
   init_katho(&game_state);
   init_player(&game_state);
@@ -80,6 +94,11 @@ int main() {
   OBJAFFINE* affine_buffer = (OBJAFFINE*)0x07000000;
   obj_affine_identity(&affine_buffer[0]);
   obj_affine_identity(&affine_buffer[1]);
+  obj_affine_scale(
+    &affine_buffer[2],
+    PUPPY_SCALE_X, 
+    PUPPY_SCALE_Y
+  );
 
   Xorshift random_state;
   xorshift_init(&random_state, 0x12345678);
@@ -108,7 +127,10 @@ int main() {
     update_physics_world(&game_state);
 
     // Collision detection
-    PhysicsObj* colliding_obj = get_colliding_obj_with_box(&game_state, &game_state.player_collider);
+    PhysicsObj* colliding_obj = get_colliding_obj_with_box(
+      &game_state,
+      &game_state.player_collider
+    );
     if (colliding_obj != NULL) {
       // Kill the colliding object
       kill_physics_object(&game_state, colliding_obj);

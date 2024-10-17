@@ -10,6 +10,7 @@
     "gba_interrupt.h": "c",
     "gba_input.h": "c",
     "obj_utils.h": "c",
-    "spritesheet.h": "c"
+    "spritesheet.h": "c",
+    "bouquet.h": "c"
   }
 }
