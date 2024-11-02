@@ -4,12 +4,12 @@
 //======================================================================
 //
 //	menu, 256x256@4, 
-//	+ palette 256 entries, not compressed
-//	+ 110 tiles (t|f|p reduced) not compressed
+//	+ palette 13 entries, not compressed
+//	+ 125 tiles (t|f|p reduced) not compressed
 //	+ regular map (in SBBs), not compressed, 32x32 
-//	Total size: 512 + 3520 + 2048 = 6080
+//	Total size: 26 + 4000 + 2048 = 6074
 //
-//	Time-stamp: 2024-10-12, 00:05:05
+//	Time-stamp: 2024-11-02, 03:47:31
 //	Exported by Cearn's GBA Image Transmogrifier, v0.9.2
 //	( http://www.coranac.com/projects/#grit )
 //
@@ -18,14 +18,14 @@
 #ifndef GRIT_MENU_H
 #define GRIT_MENU_H
 
-#define menuTilesLen 3520
-extern const unsigned int menuTiles[880];
+#define menuTilesLen 4000
+extern const unsigned int menuTiles[1000];
 
 #define menuMapLen 2048
 extern const unsigned short menuMap[1024];
 
-#define menuPalLen 512
-extern const unsigned short menuPal[256];
+#define menuPalLen 26
+extern const unsigned short menuPal[14];
 
 #endif // GRIT_MENU_H
 

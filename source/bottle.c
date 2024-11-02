@@ -28,6 +28,7 @@ void init_bottle_pool(GameState* game_state) {
   Collider bottle_collider;
   bottle_collider.circle.center_x = 16;
   bottle_collider.circle.center_y = 32;
+  bottle_collider.circle.radius = 4;
   init_physics_object_pool(
     game_state,
     &bottle_buffer,

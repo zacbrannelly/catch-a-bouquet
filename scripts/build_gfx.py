@@ -3,62 +3,18 @@ import json
 import fire
 from PIL import Image
 
-
-ASM_FILE_TEMPLATE = """
-	.section .rodata
-	.align	2
-	.global {variable_name}
-	.hidden {variable_name}
-{variable_name}:
-{data_rows}
-"""
-
-HALF_WORD_DATA_ROW_TEMPLATE = "  .hword {data}"
-WORD_DATA_ROW_TEMPLATE = "  .word {data}"
-
-INCLUDE_FILE_TEMPLATE = """
-#ifndef {upper_case_header_name}_H
-#define {upper_case_header_name}_H
-{declarations}
-#endif // {upper_case_header_name}_H
-"""
-
-TILES_DECLARATION_TEMPLATE = """
-#define {variable_name}_tiles_len {tiles_length_bytes}
-extern const unsigned int {variable_name}_tiles[{tiles_length_words}];
-"""
-
-PALETTE_DECLARATION_TEMPLATE = """
-#define {output_name}_palette_len {palette_length_bytes}
-extern const unsigned short {output_name}_palette[{palette_length_half_words}];
-"""
-
-
-def rgba32_tuple_to_bgr15(rgba32_tuple):
-  r5 = (rgba32_tuple[0] >> 3) & 0x1F
-  g5 = (rgba32_tuple[1] >> 3) & 0x1F
-  b5 = (rgba32_tuple[2] >> 3) & 0x1F
-  return (
-    (b5 << 10) |
-    (g5 << 5) |
-    r5
-  )
-
-
-def rgba32_to_bgr15(rgba32):
-  r = (rgba32 >> 24) & 0xFF
-  g = (rgba32 >> 16) & 0xFF
-  b = (rgba32 >> 8) & 0xFF
-  
-  r5 = (r >> 3) & 0x1F
-  g5 = (g >> 3) & 0x1F
-  b5 = (b >> 3) & 0x1F
-
-  return (
-    (b5 << 10) |
-    (g5 << 5) |
-    r5
-  )
+from common.templates import (
+  ASM_FILE_TEMPLATE,
+  HALF_WORD_DATA_ROW_TEMPLATE,
+  WORD_DATA_ROW_TEMPLATE,
+  INCLUDE_FILE_TEMPLATE,
+  TILES_DECLARATION_TEMPLATE,
+  PALETTE_DECLARATION_TEMPLATE,
+)
+from common.conversion import (
+  rgba32_tuple_to_bgr15,
+  rgba32_to_bgr15,
+)
 
 
 def build_shared_palette(images, output_base_name, output_dir, transparent_color_bgr15):
@@ -253,6 +209,7 @@ def main(
   include_output_path = os.path.join(output_dir, f"{output_base_name}_palette.h")
   with open(include_output_path, "w") as f:
     f.write(include_output)
+
 
 if __name__ == "__main__":
   fire.Fire(main)

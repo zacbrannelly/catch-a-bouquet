@@ -28,6 +28,7 @@ void init_bq_pool(GameState* game_state) {
   Collider bq_collider;
   bq_collider.circle.center_x = 16;
   bq_collider.circle.center_y = 16;
+  bq_collider.circle.radius = 4;
   init_physics_object_pool(
     game_state,
     &bq_buffer,
