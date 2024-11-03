@@ -27,6 +27,7 @@
 #include "random.h"
 #include "text.h"
 #include "health_bar.h"
+#include "game_over.h"
 
 // This scale is applied to any sprites maked as ROT/SCALE using the first affine matrix.
 int const SCALE_X = 256; // .8 fixed point, 0.0 = 0, 0.5 = 128, 1.0 = 256, 1.5 = 384
@@ -70,6 +71,8 @@ int main() {
   
   // Initialize the text screen (BG2, with priority 0)
   init_text();
+
+  init_game_over_screen();
 
   // Start with "SCORE 0" on the screen.
   char* score_str = malloc(50);
@@ -164,8 +167,9 @@ int main() {
         update_health_bar(HEALTH - game_state.bottle_hits);
 
         if (game_state.bottle_hits >= HEALTH) {
-          // Game over
-          // TODO: FadeToBlack(60);
+          // Game over screen, returns when the player presses start
+          game_over_screen(game_state.score);
+
           game_state.score = 0;
           game_state.bottle_hits = 0;
           render_score(score_str, game_state.score);

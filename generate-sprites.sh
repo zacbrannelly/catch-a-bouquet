@@ -18,3 +18,10 @@ grit gfx/menu.bmp -gt -gB4 -mRtpf -mLs -pn 13
 # Copy the source files to the source directory
 mv menu.h ./source
 mv menu.s ./source
+
+# Generate the game over background tile data
+grit gfx/game_over.bmp -gt -gB4 -mRtpf -mLs -pn 14 -ps 2
+
+# Copy the source files to the source directory
+mv game_over.h ./source/game_over_gfx.h
+mv game_over.s ./source/game_over_gfx.s
