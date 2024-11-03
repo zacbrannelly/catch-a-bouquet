@@ -50,6 +50,14 @@ inline void obj_update(OBJATTR* buffer, u8 obj_id) {
   CpuSet(buffer, &OAM[obj_id], sizeof(OBJATTR) / 2);
 }
 
+inline void obj_disable(OBJATTR* obj) {
+  obj->attr0 = obj->attr0 | OBJ_DISABLE;
+}
+
+inline void obj_enable(OBJATTR* obj) {
+  obj->attr0 = obj->attr0 & ~OBJ_DISABLE;
+}
+
 void obj_disable_all();
 
 #endif // OBJ_UTILS_H

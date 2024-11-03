@@ -11,6 +11,8 @@ typedef struct GameState {
   int theta;
   int jump_velocity;
   bool is_jumping;
+  int score;
+  int bottle_hits;
   OBJATTR zac_buffer;
   OBJATTR katho_buffer;
   Sprite* player;

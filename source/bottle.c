@@ -11,7 +11,7 @@ int const BOTTLE_SPAWN_X = 30 - 8;
 int const BOTTLE_SPAWN_Y = FRAME_HEIGHT - 32 - 16;
 
 int const BOTTLE_MIN_SPEED_X = 4;
-int const BOTTLE_MAX_SPEED_X = 9;
+int const BOTTLE_MAX_SPEED_X = 4;
 int const BOTTLE_MIN_SPEED_Y = 8;
 int const BOTTLE_MAX_SPEED_Y = 14;
 
