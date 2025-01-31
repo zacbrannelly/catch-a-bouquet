@@ -170,10 +170,14 @@ int main() {
           // Game over screen, returns when the player presses start
           game_over_screen(game_state.score);
 
+          // Reset the game state
           game_state.score = 0;
           game_state.bottle_hits = 0;
           render_score(score_str, game_state.score);
           update_health_bar(HEALTH);
+          reset_player(&game_state);
+          reset_bq_pool(&game_state);
+          reset_bottle_pool(&game_state);
         }
       }
     }

@@ -73,6 +73,11 @@ void init_physics_object_pool(
 );
 
 /**
+ * Resets the physics object pool for a given type.
+ */
+void reset_physics_object_pool(GameState* game_state, PhysicsObjType type);
+
+/**
  * Spawns a physics object.
  */
 PhysicsObj* spawn_physics_object(

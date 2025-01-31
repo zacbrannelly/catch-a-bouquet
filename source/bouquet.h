@@ -7,6 +7,7 @@
 typedef struct GameState GameState;
 
 void init_bq_pool(GameState* game_state);
+void reset_bq_pool(GameState* game_state);
 void launch_bq(GameState* game_state);
 
 #endif

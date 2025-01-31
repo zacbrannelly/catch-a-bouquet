@@ -24,6 +24,11 @@ void init_player(GameState* game_state) {
   obj_update(&game_state->zac_buffer, ZAC_SPRITE_ID);
 }
 
+void reset_player(GameState* game_state) {
+  obj_set_pos(&game_state->zac_buffer, 100, ZAC_FLOOR_POS);
+  obj_update(&game_state->zac_buffer, ZAC_SPRITE_ID);
+}
+
 void update_player_movement(GameState* game_state) {
   if (keysHeld() & KEY_RIGHT) {
     obj_add_pos(&game_state->zac_buffer, PLAYER_SPEED, 0);

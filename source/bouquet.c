@@ -42,6 +42,10 @@ void init_bq_pool(GameState* game_state) {
   xorshift_init(&bq_random_state, 0x12345678);
 }
 
+void reset_bq_pool(GameState* game_state) {
+  reset_physics_object_pool(game_state, BOUQUET);
+}
+
 void launch_bq(GameState* game_state) {
   // Calculate random launch speed for the bouquet
   int bq_launch_speed_x = xorshift_range(&bq_random_state, BQ_MIN_SPEED_X, BQ_MAX_SPEED_X);

@@ -45,6 +45,16 @@ void init_physics_object_pool(
   }
 }
 
+void reset_physics_object_pool(GameState* game_state, PhysicsObjType type) {
+  PhysicsWorld* world = &game_state->physics_world;
+  for (int i = 0; i < MAX_PHYSICS_OBJS; i++) {
+    PhysicsObj* obj = &world->pool[i];
+    if (obj->enabled && obj->type == type) {
+      kill_physics_object(game_state, obj);
+    }
+  }
+}
+
 PhysicsObj* spawn_physics_object(
   GameState* game_state,
   PhysicsObjType type,

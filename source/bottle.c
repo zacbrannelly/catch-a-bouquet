@@ -42,6 +42,10 @@ void init_bottle_pool(GameState* game_state) {
   xorshift_init(&bottle_random_state, 0x12345678);
 }
 
+void reset_bottle_pool(GameState* game_state) {
+  reset_physics_object_pool(game_state, BOTTLE);
+}
+
 void launch_bottle(GameState* game_state) {
   // Calculate random launch speed for the bouquet
   int bottle_launch_speed_x = xorshift_range(&bottle_random_state, BOTTLE_MIN_SPEED_X, BOTTLE_MAX_SPEED_X);
